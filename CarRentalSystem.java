@@ -172,11 +172,12 @@ class RentalAgency
     private List<Vehicle> vehicles;
     private List<Vehicle> availableVehicle;
 
-    public List<car> carList=new ArrayList<>();
+    public List<car> carList;
     public RentalAgency()
     {
         this.vehicles = new ArrayList<>();
         this.availableVehicle = new ArrayList<>();
+        carList=new ArrayList<>();
     }
     public void addcar(car car){
         carList.add(car);
@@ -206,7 +207,8 @@ class RentalAgency
         System.out.println("vehicle removed: " + vehicle.getMake() + " " + vehicle.getModel());
     }
 
-    public void rentVehicle(Vehicle vehicle , Customer customer , int days) {
+    public void rentVehicle(Vehicle vehicle , Customer customer , int days)
+    {
         if (availableVehicle.contains(vehicle))
         {
             customer.rentVehicle(vehicle);
@@ -217,7 +219,8 @@ class RentalAgency
         }
     }
 
-    public void returnVehicle(Vehicle vehicle , Customer customer) {
+    public void returnVehicle(Vehicle vehicle , Customer customer)
+    {
          if(customer.getRentedVehicle().contains(vehicle)){
              customer.returnVehicle(vehicle);
          }else{
@@ -225,7 +228,8 @@ class RentalAgency
          }
     }
 
-    public List<Vehicle> getAvailableVehicle() {
+    public List<Vehicle> getAvailableVehicle()
+    {
         return availableVehicle;
     }
     public void displayCar()
@@ -259,6 +263,7 @@ public class CarRentalSystem {
             System.out.println("--- 2 . Add Customer ---");
             System.out.println("--- 3 . Rent  car  ---");
             System.out.println("--- 4 . Return Car  ---");
+            System.out.println("--- 5 . view Car  ---");
 
             int n = sc.nextInt();
 
@@ -282,7 +287,7 @@ public class CarRentalSystem {
                     System.out.println("enter the fueltype ");
                     String fueltype = sc.next();
                     car car = new car(make, model, year, rentalPrice, seats, fueltype);
-                    rentalAgency.addVehicle(car);
+                    rentalAgency.addcar(car);
                     System.out.println("vehicle added succssfully");
                     break;
 
@@ -339,6 +344,10 @@ public class CarRentalSystem {
                         }
                     }
                 }
+                case 5:
+                {
+                    rentalAgency.displayCar();
+                }
                 default:
                 {
                     System.out.println("invalid option");
@@ -347,4 +356,3 @@ public class CarRentalSystem {
         }
     }
 }
-
